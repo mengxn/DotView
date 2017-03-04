@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    android:id="@+id/activity_main"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
@@ -12,55 +13,36 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="me.codego.dotview.MainActivity">
 
-    <RelativeLayout
+    <me.codego.dotview.DotView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:text="74"
+        android:textColor="#FFF"
+        android:textSize="12sp"/>
 
-        <ImageView
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:text="Hello World!"/>
-
-        <me.codego.dotview.DotView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="74"
-            android:layout_alignRight="@id/button1"
-            android:layout_alignTop="@id/button1"
-            android:layout_marginRight="-10dp"
-            android:layout_marginTop="-10dp"
-            android:textColor="#FFF"
-            android:textSize="12sp"/>
-    </RelativeLayout>
-
-    <RelativeLayout
+    <me.codego.dotview.DotView
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
-        android:layout_height="wrap_content">
+        android:text="74"
+        android:textColor="#FFF"
+        android:textSize="12sp"
+        app:dotPadding="10dp"/>
 
-        <ImageView
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:text="Hello World!"/>
+    <me.codego.dotview.DotView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:text="37"
+        android:textColor="#FFF"
+        android:textSize="12sp"
+        app:dotColor="#00F"/>
 
-        <me.codego.dotview.DotView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignRight="@id/button2"
-            android:layout_alignTop="@id/button2"
-            android:layout_marginRight="-3dp"
-            android:layout_marginTop="-3dp"
-            android:textColor="#FFF"
-            android:textSize="12sp"/>
-    </RelativeLayout>
-
+    <me.codego.dotview.DotView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:textColor="#FFF"
+        android:textSize="12sp"/>
 
 </LinearLayout>

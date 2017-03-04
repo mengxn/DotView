@@ -48,24 +48,18 @@ public class DotView extends TextView {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int width;
         if (getText().length() == 0) {
-            width = 30;
+            width = 10;
         } else {
             float textWidth = getPaint().measureText("88");
-
             Paint.FontMetrics fontMetrics = getPaint().getFontMetrics();
             float textHeight = fontMetrics.descent - fontMetrics.ascent;
-
-            if (textWidth > textHeight) {
-                width = (int) (textWidth + mDotPadding * 2);
-            } else {
-                width = (int) (textHeight + mDotPadding * 2);
-            }
+            width = (int) (textWidth > textHeight ? textWidth : textHeight);
         }
+        width += mDotPadding * 2;
 
         int newMeasureSpec = MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY);
-        setMeasuredDimension(newMeasureSpec, newMeasureSpec);
+        super.onMeasure(newMeasureSpec, newMeasureSpec);
     }
 }
