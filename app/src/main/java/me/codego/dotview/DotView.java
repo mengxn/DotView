@@ -3,6 +3,7 @@ package me.codego.dotview;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -25,8 +26,9 @@ public class DotView extends TextView {
         super(context, attrs);
 
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.DotView, 0, 0);
-        int color = typedArray.getColor(R.styleable.DotView_dotColor, 0xffff0000);
-        mDotPadding = typedArray.getDimensionPixelSize(R.styleable.DotView_dotPadding, 10);
+        int color = typedArray.getColor(R.styleable.DotView_dotColor, Color.RED);
+        float density = getResources().getDisplayMetrics().density;
+        mDotPadding = typedArray.getDimensionPixelSize(R.styleable.DotView_dotPadding, (int) (3 * density));
         typedArray.recycle();
 
         mPaint = new Paint();
