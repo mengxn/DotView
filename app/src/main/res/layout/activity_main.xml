@@ -23,8 +23,16 @@
     <me.codego.dotview.DotView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="74d"
+        android:textColor="#FFF"
         android:layout_marginLeft="50dp"
-        android:text="74"
+        android:textSize="12sp"/>
+
+    <me.codego.dotview.DotView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:text="39"
         android:textColor="#FFF"
         android:textSize="12sp"
         app:dotPadding="10dp"/>

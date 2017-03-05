@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.widget.TextView;
@@ -17,6 +18,8 @@ public class DotView extends TextView {
 
     private Paint mPaint;
     private int mDotPadding;
+
+    private static final String DEFAULT_TEXT = "...";
 
     public DotView(Context context) {
         super(context);
@@ -37,6 +40,8 @@ public class DotView extends TextView {
 
         setPadding(0, 0, 0, 0);
         setGravity(Gravity.CENTER);
+//        setSingleLine();
+//        setInputType(InputType.TYPE_TEXT_FLAG_IME_MULTI_LINE);
     }
 
     @Override
@@ -54,6 +59,7 @@ public class DotView extends TextView {
         if (getText().length() == 0) {
             width = 10;
         } else {
+            validate();
             float textWidth = getPaint().measureText("88");
             Paint.FontMetrics fontMetrics = getPaint().getFontMetrics();
             float textHeight = fontMetrics.descent - fontMetrics.ascent;
@@ -63,5 +69,23 @@ public class DotView extends TextView {
 
         int newMeasureSpec = MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY);
         super.onMeasure(newMeasureSpec, newMeasureSpec);
+    }
+
+    private void validate() {
+        String text = getText().toString();
+        if (!isNumber(text) || !isLegalNumber(Integer.valueOf(text))) {
+            setText(DEFAULT_TEXT);
+        }
+    }
+
+    private boolean isNumber(String text) {
+        if (TextUtils.isEmpty(text)) {
+            return false;
+        }
+        return text.matches("\\d+");
+    }
+
+    private boolean isLegalNumber(int number) {
+        return number >= 0 && number < 100;
     }
 }
