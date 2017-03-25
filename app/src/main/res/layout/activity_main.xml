@@ -51,6 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
         android:textColor="#FFF"
-        android:textSize="12sp"/>
+        android:textSize="12sp"
+        app:dotPadding="5dp"/>
 
 </LinearLayout>

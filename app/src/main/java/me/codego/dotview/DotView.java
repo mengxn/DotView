@@ -19,7 +19,10 @@ public class DotView extends TextView {
     private Paint mPaint;
     private int mDotPadding;
 
-    private static final String DEFAULT_TEXT = "...";
+    private static final String DEFAULT_OVER_TEXT = "...";
+    private static final int DEFAULT_PADDING = 3;
+    private static final String DEFAULT_TEXT = "88";
+
 
     public DotView(Context context) {
         super(context);
@@ -31,7 +34,7 @@ public class DotView extends TextView {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.DotView, 0, 0);
         int color = typedArray.getColor(R.styleable.DotView_dotColor, Color.RED);
         float density = getResources().getDisplayMetrics().density;
-        mDotPadding = typedArray.getDimensionPixelSize(R.styleable.DotView_dotPadding, (int) (3 * density));
+        mDotPadding = typedArray.getDimensionPixelSize(R.styleable.DotView_dotPadding, (int) (DEFAULT_PADDING * density));
         typedArray.recycle();
 
         mPaint = new Paint();
@@ -40,14 +43,12 @@ public class DotView extends TextView {
 
         setPadding(0, 0, 0, 0);
         setGravity(Gravity.CENTER);
-//        setSingleLine();
-//        setInputType(InputType.TYPE_TEXT_FLAG_IME_MULTI_LINE);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.save();
-        int radius = getWidth()/2;
+        final int radius = getWidth()/2;
         canvas.drawCircle(radius, radius, radius, mPaint);
         canvas.restore();
         super.onDraw(canvas);
@@ -55,27 +56,33 @@ public class DotView extends TextView {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int width;
-        if (getText().length() == 0) {
-            width = 10;
-        } else {
-            validate();
-            float textWidth = getPaint().measureText("88");
-            Paint.FontMetrics fontMetrics = getPaint().getFontMetrics();
-            float textHeight = fontMetrics.descent - fontMetrics.ascent;
-            width = (int) (textWidth > textHeight ? textWidth : textHeight);
+        int width = 0;
+        if (getText().length() > 0) {
+            width = Math.max(getTextWidth(), getTextHeight());
         }
         width += mDotPadding * 2;
-
         int newMeasureSpec = MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY);
         super.onMeasure(newMeasureSpec, newMeasureSpec);
     }
 
-    private void validate() {
-        String text = getText().toString();
-        if (!isNumber(text) || !isLegalNumber(Integer.valueOf(text))) {
-            setText(DEFAULT_TEXT);
+    private int getTextWidth() {
+        return (int) getPaint().measureText(DEFAULT_TEXT);
+    }
+
+    private int getTextHeight() {
+        final Paint.FontMetrics fontMetrics = getPaint().getFontMetrics();
+        return (int) (fontMetrics.descent - fontMetrics.ascent);
+    }
+
+    @Override
+    public void setText(CharSequence text, BufferType type) {
+        if (text.length() > 0) {
+            final String testStr = text.toString();
+            if (!isNumber(testStr) || !isLegalNumber(Integer.valueOf(testStr))) {
+                text = DEFAULT_OVER_TEXT;
+            }
         }
+        super.setText(text, type);
     }
 
     private boolean isNumber(String text) {
