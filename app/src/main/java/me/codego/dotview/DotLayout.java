@@ -82,8 +82,8 @@ public class DotLayout extends FrameLayout {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+    public void draw(Canvas canvas) {
+        super.draw(canvas);
 
         // draw dot
         if (isShow && getChildCount() > 0) {
