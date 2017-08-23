@@ -9,5 +9,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        final DotLayout dotLayout = (DotLayout) findViewById(R.id.dot_layout);
+        dotLayout.setNumber(67);
+        dotLayout.show(true);
+
+        final DotLayout dotLayout2 = (DotLayout) findViewById(R.id.dot_layout_2);
+        dotLayout2.show(true);
     }
 }

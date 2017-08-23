@@ -3,5 +3,12 @@
     <declare-styleable name="DotView">
         <attr name="dotColor" format="color"/>
         <attr name="dotPadding" format="dimension"/>
+        <attr name="dotOverPadding" format="dimension"/>
+        <attr name="dotTextSize" format="dimension"/>
+        <attr name="dotLocation" format="enum">
+            <enum name="right" value="0"/>
+            <enum name="left" value="1"/>
+        </attr>
     </declare-styleable>
+
 </resources>
