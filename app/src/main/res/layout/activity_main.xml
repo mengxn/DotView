@@ -69,8 +69,8 @@
         <me.codego.dotview.DotLayout
             android:id="@+id/dot_layout"
             android:layout_width="wrap_content"
-            app:dotOverPadding="15dp"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:dotOverPadding="15dp">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -88,8 +88,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"
                 android:text="Hello World"/>
+        </me.codego.dotview.DotLayout>
+
+        <me.codego.dotview.DotLayout
+            android:id="@+id/dot_layout_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            app:dotOverPadding="15dp">
+
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="#ff0"/>
         </me.codego.dotview.DotLayout>
 
     </LinearLayout>

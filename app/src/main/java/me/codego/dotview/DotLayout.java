@@ -29,7 +29,7 @@ public class DotLayout extends FrameLayout {
 
     private static final String DEFAULT_OVER_TEXT = "...";
     private static final int DEFAULT_PADDING = 3;
-    private static final int DEFAULT_OVER_PADDING = 2;
+    private static final int DEFAULT_OVER_PADDING = 3;
     private static final String DEFAULT_TEXT = "88";
     private static final int DEFAULT_TEXT_SIZE = 10;
 
