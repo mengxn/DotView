@@ -70,7 +70,7 @@
             android:id="@+id/dot_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:dotOverPadding="15dp">
+            app:dotOverPadding="3dp">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -97,7 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginStart="20dp"
-            app:dotOverPadding="15dp">
+            app:dotOverPadding="3dp">
 
             <TextView
                 android:layout_width="40dp"

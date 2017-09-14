@@ -49,7 +49,7 @@ public class DotLayout extends FrameLayout {
         float density = getResources().getDisplayMetrics().density;
         mDotPadding = typedArray.getDimensionPixelOffset(R.styleable.DotLayout_dotPadding, (int) (DEFAULT_PADDING * density));
         mTextSize = typedArray.getDimensionPixelOffset(R.styleable.DotLayout_dotTextSize, (int) (DEFAULT_TEXT_SIZE * density));
-        mDotOverPadding = typedArray.getDimensionPixelOffset(R.styleable.DotLayout_dotTextSize, (int) (DEFAULT_OVER_PADDING * density));
+        mDotOverPadding = typedArray.getDimensionPixelOffset(R.styleable.DotLayout_dotOverPadding, (int) (DEFAULT_OVER_PADDING * density));
         mDotLocation = typedArray.getInt(R.styleable.DotLayout_dotLocation, LOCATION_RIGHT);
         typedArray.recycle();
 
