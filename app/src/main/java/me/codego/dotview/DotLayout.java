@@ -33,8 +33,8 @@ public class DotLayout extends FrameLayout {
     private static final String DEFAULT_TEXT = "88";
     private static final int DEFAULT_TEXT_SIZE = 10;
 
-    private static final int LOCATION_LEFT = 1;
     private static final int LOCATION_RIGHT = 0;
+    private static final int LOCATION_LEFT = 1;
 
 
     public DotLayout(@NonNull Context context) {
@@ -44,13 +44,13 @@ public class DotLayout extends FrameLayout {
     public DotLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.DotView, 0, 0);
-        int color = typedArray.getColor(R.styleable.DotView_dotColor, Color.RED);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.DotLayout, 0, 0);
+        int color = typedArray.getColor(R.styleable.DotLayout_dotColor, Color.RED);
         float density = getResources().getDisplayMetrics().density;
-        mDotPadding = typedArray.getDimensionPixelOffset(R.styleable.DotView_dotPadding, (int) (DEFAULT_PADDING * density));
-        mTextSize = typedArray.getDimensionPixelOffset(R.styleable.DotView_dotTextSize, (int) (DEFAULT_TEXT_SIZE * density));
-        mDotOverPadding = typedArray.getDimensionPixelOffset(R.styleable.DotView_dotTextSize, (int) (DEFAULT_OVER_PADDING * density));
-        mDotLocation = typedArray.getInt(R.styleable.DotView_dotLocation, LOCATION_RIGHT);
+        mDotPadding = typedArray.getDimensionPixelOffset(R.styleable.DotLayout_dotPadding, (int) (DEFAULT_PADDING * density));
+        mTextSize = typedArray.getDimensionPixelOffset(R.styleable.DotLayout_dotTextSize, (int) (DEFAULT_TEXT_SIZE * density));
+        mDotOverPadding = typedArray.getDimensionPixelOffset(R.styleable.DotLayout_dotTextSize, (int) (DEFAULT_OVER_PADDING * density));
+        mDotLocation = typedArray.getInt(R.styleable.DotLayout_dotLocation, LOCATION_RIGHT);
         typedArray.recycle();
 
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -85,9 +85,9 @@ public class DotLayout extends FrameLayout {
     public void draw(Canvas canvas) {
         super.draw(canvas);
 
-        // draw dot
+        // draw dot when isShow is true and has child
         if (isShow && getChildCount() > 0) {
-            if (mDotLocation == 1) {
+            if (mDotLocation == LOCATION_LEFT) {
                 drawLeft(canvas);
             } else {
                 drawRight(canvas);
@@ -111,16 +111,13 @@ public class DotLayout extends FrameLayout {
     private void drawRight(Canvas canvas) {
         canvas.save();
         final View childView = getChildAt(0);
-        // 计算点半径
-        int radius = mDotPadding;
-        if (mNumber > 0) {
-            final float textWidth = mTextPaint.measureText(DEFAULT_TEXT);
-            radius += textWidth / 2;
-        }
+
+        // 画点
+        int radius = getDotRadius();
         canvas.translate(childView.getRight() - radius * 2 + mDotOverPadding, childView.getTop() - mDotOverPadding);
         canvas.drawCircle(radius, radius, radius, mPaint);
 
-        // 画显示数据
+        // 如果 mNumber > 0, 将数据画出来
         if (mNumber > 0) {
             String text;
             if (mNumber <= 99) {
@@ -139,19 +136,44 @@ public class DotLayout extends FrameLayout {
         canvas.restore();
     }
 
+    // 计算点半径
+    private int getDotRadius() {
+        int radius = mDotPadding;
+        if (mNumber > 0) {
+            final float textWidth = mTextPaint.measureText(DEFAULT_TEXT);
+            final Paint.FontMetrics fontMetrics = mTextPaint.getFontMetrics();
+            final float textHeight = fontMetrics.descent - fontMetrics.ascent;
+            radius += Math.max(textWidth, textHeight) / 2;
+        }
+        return radius;
+    }
     /**
-     * (0,99] 显示具体数据
-     * (-, 0] 只显示点
-     * (99,+) ...
+     * 设置显示数据
      *
-     * @param number
+     * @param number (0,99] 显示具体数据
+     *               (-, 0] 只显示点
+     *               (99,+) ...
      */
     public void setNumber(int number) {
         mNumber = number;
     }
 
+    /**
+     * 是否显示提示
+     * @param isShow
+     */
     public void show(boolean isShow) {
+        show(isShow, mNumber);
+    }
+
+    /**
+     * 是否显示提示
+     * @param isShow
+     * @param number 提示数据 {@link #setNumber(int)}
+     */
+    public void show(boolean isShow, int number) {
         this.isShow = isShow;
-        requestLayout();
+        this.mNumber = isShow ? number : 0;
+        postInvalidate();
     }
 }

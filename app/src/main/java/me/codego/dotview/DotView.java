@@ -8,13 +8,12 @@ import android.graphics.Paint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Gravity;
-import android.widget.TextView;
 
 
 /**
  * Created by mengxn on 17-3-3.
  */
-public class DotView extends TextView {
+public class DotView extends android.support.v7.widget.AppCompatTextView {
 
     private Paint mPaint;
     private int mDotPadding;
@@ -47,10 +46,8 @@ public class DotView extends TextView {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.save();
         final int radius = getWidth()/2;
         canvas.drawCircle(radius, radius, radius, mPaint);
-        canvas.restore();
         super.onDraw(canvas);
     }
 
