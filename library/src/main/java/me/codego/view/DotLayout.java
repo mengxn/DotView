@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.FrameLayout;
 
@@ -82,6 +83,26 @@ public class DotLayout extends FrameLayout {
         }
     }
 
+    public void setDotColor(int color) {
+        mPaint.setColor(color);
+    }
+
+    public void setDotTextColor(int color) {
+        mTextPaint.setColor(color);
+    }
+
+    public void setDotTextSize(float textSize) {
+        mTextPaint.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, textSize, getResources().getDisplayMetrics()));
+    }
+
+    public void setDotOverPadding(float padding) {
+        mDotOverPadding = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, padding, getResources().getDisplayMetrics());
+    }
+
+    public void setDotPadding(float padding) {
+        mDotPadding = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, padding, getResources().getDisplayMetrics());
+    }
+
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
@@ -98,6 +119,7 @@ public class DotLayout extends FrameLayout {
 
     /**
      * 只支持点显示，不显示具体数据
+     *
      * @param canvas
      */
     private void drawLeft(Canvas canvas) {
@@ -148,6 +170,7 @@ public class DotLayout extends FrameLayout {
         }
         return radius;
     }
+
     /**
      * 设置显示数据
      *
@@ -161,6 +184,7 @@ public class DotLayout extends FrameLayout {
 
     /**
      * 是否显示提示
+     *
      * @param isShow
      */
     public void show(boolean isShow) {
@@ -169,6 +193,7 @@ public class DotLayout extends FrameLayout {
 
     /**
      * 是否显示提示
+     *
      * @param isShow
      * @param number 提示数据 {@link #setNumber(int)}
      */
