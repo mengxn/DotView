@@ -14,7 +14,7 @@
 
 1. xml布局
 ```xml
-<me.codego.dotview.DotView
+<me.codego.view.DotView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="37"
@@ -29,7 +29,7 @@
 
 1. 我们可以使用DotLayout包裹任何需要提示
 ```xml
-<me.codego.dotview.DotLayout
+<me.codego.view.DotLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:dotOverPadding="3dp">
@@ -38,6 +38,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/ic_launcher"/>
-</me.codego.dotview.DotLayout>
+</me.codego.view.DotLayout>
 ```
 2. 调用`dotLayout.show(true, 4)`进行展示

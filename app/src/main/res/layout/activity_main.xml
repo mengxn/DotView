@@ -18,14 +18,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <me.codego.dotview.DotView
+        <me.codego.view.DotView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="74"
             android:textColor="#FFF"
             android:textSize="12sp"/>
 
-        <me.codego.dotview.DotView
+        <me.codego.view.DotView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
@@ -33,7 +33,7 @@
             android:textColor="#FFF"
             android:textSize="12sp"/>
 
-        <me.codego.dotview.DotView
+        <me.codego.view.DotView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
@@ -42,7 +42,7 @@
             android:textSize="12sp"
             app:dotPadding="10dp"/>
 
-        <me.codego.dotview.DotView
+        <me.codego.view.DotView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
@@ -51,7 +51,7 @@
             android:textSize="12sp"
             app:dotColor="#00F"/>
 
-        <me.codego.dotview.DotView
+        <me.codego.view.DotView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
@@ -66,19 +66,21 @@
         android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
-        <me.codego.dotview.DotLayout
+        <me.codego.view.DotLayout
             android:id="@+id/dot_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:dotOverPadding="3dp">
+            app:dotColor="#ff0"
+            app:dotOverPadding="3dp"
+            app:dotTextColor="#000">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_launcher"/>
-        </me.codego.dotview.DotLayout>
+        </me.codego.view.DotLayout>
 
-        <me.codego.dotview.DotLayout
+        <me.codego.view.DotLayout
             android:id="@+id/dot_layout_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -89,9 +91,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Hello World"/>
-        </me.codego.dotview.DotLayout>
+        </me.codego.view.DotLayout>
 
-        <me.codego.dotview.DotLayout
+        <me.codego.view.DotLayout
             android:id="@+id/dot_layout_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -103,7 +105,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="#ff0"/>
-        </me.codego.dotview.DotLayout>
+        </me.codego.view.DotLayout>
 
     </LinearLayout>
 

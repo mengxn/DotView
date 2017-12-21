@@ -1,4 +1,4 @@
-package me.codego.dotview;
+package me.codego.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;

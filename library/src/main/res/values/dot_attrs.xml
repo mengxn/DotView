@@ -2,6 +2,7 @@
 <resources>
 
     <attr name="dotColor" format="color"/>
+    <attr name="dotTextColor" format="color"/>
     <attr name="dotPadding" format="dimension"/>
     <attr name="dotOverPadding" format="dimension"/>
     <attr name="dotTextSize" format="dimension"/>
@@ -17,6 +18,7 @@
 
     <declare-styleable name="DotLayout">
         <attr name="dotColor"/>
+        <attr name="dotTextColor"/>
         <attr name="dotPadding"/>
         <attr name="dotTextSize"/>
         <attr name="dotOverPadding"/>

@@ -1,4 +1,4 @@
-package me.codego.dotview;
+package me.codego.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -46,6 +46,7 @@ public class DotLayout extends FrameLayout {
 
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.DotLayout, 0, 0);
         int color = typedArray.getColor(R.styleable.DotLayout_dotColor, Color.RED);
+        int textColor = typedArray.getColor(R.styleable.DotLayout_dotTextColor, Color.WHITE);
         float density = getResources().getDisplayMetrics().density;
         mDotPadding = typedArray.getDimensionPixelOffset(R.styleable.DotLayout_dotPadding, (int) (DEFAULT_PADDING * density));
         mTextSize = typedArray.getDimensionPixelOffset(R.styleable.DotLayout_dotTextSize, (int) (DEFAULT_TEXT_SIZE * density));
@@ -58,7 +59,7 @@ public class DotLayout extends FrameLayout {
         mPaint.setAntiAlias(true);
 
         mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mTextPaint.setColor(Color.WHITE);
+        mTextPaint.setColor(textColor);
         mTextPaint.setTextSize(mTextSize);
 
         setWillNotDraw(false);
