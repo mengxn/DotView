@@ -185,7 +185,7 @@ public class DotLayout extends FrameLayout {
     /**
      * 是否显示提示
      *
-     * @param isShow
+     * @param isShow 是否显示
      */
     public void show(boolean isShow) {
         show(isShow, mNumber);
@@ -194,7 +194,7 @@ public class DotLayout extends FrameLayout {
     /**
      * 是否显示提示
      *
-     * @param isShow
+     * @param isShow 是否显示
      * @param number 提示数据 {@link #setNumber(int)}
      */
     public void show(boolean isShow, int number) {
