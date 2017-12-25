@@ -1,4 +1,4 @@
-package me.codego.dotview;
+package me.codego.example;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

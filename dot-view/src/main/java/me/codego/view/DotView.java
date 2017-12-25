@@ -9,6 +9,8 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Gravity;
 
+import me.codego.dotview.R;
+
 
 /**
  * Created by mengxn on 17-3-3.

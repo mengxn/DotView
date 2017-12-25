@@ -12,6 +12,8 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import me.codego.dotview.R;
+
 /**
  * 提示布局
  * Created by mengxn on 2017/8/21.
