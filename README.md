@@ -9,6 +9,10 @@
 ![demo](image/demo_2.png)
 
 ### 使用
+#### 引用
+```groovy
+compile 'me.codego.view:dot-view:1.0.2'
+```
 #### DotView
 > 我们可以使用DotView，在任何你需要的地方。
 
