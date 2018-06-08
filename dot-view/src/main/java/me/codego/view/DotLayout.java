@@ -75,7 +75,7 @@ public class DotLayout extends FrameLayout {
             }
         } else {
             if (getPaddingTop() < mDotOverPadding || getPaddingRight() < mDotOverPadding) {
-                setPadding(getPaddingLeft(), mDotOverPadding, mDotOverPadding, getPaddingBottom());
+                setPadding(getPaddingLeft(), Math.max(getPaddingTop(), mDotOverPadding), Math.max(getPaddingRight(), mDotOverPadding), getPaddingBottom());
             }
         }
 
