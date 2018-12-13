@@ -12,16 +12,24 @@
     </attr>
 
     <declare-styleable name="DotView">
+        <!-- 圆点背景色 -->
         <attr name="dotColor"/>
+        <!-- 不显示数字：相当于圆半径；显示数字：外圆到数字的距离 -->
         <attr name="dotPadding"/>
     </declare-styleable>
 
     <declare-styleable name="DotLayout">
+        <!-- 圆点背景色 -->
         <attr name="dotColor"/>
+        <!-- 圆点前景色，即数字显示颜色 -->
         <attr name="dotTextColor"/>
+        <!-- 不显示数字：相当于圆半径；显示数字：外圆到数字的距离 -->
         <attr name="dotPadding"/>
+        <!-- 字号大小 -->
         <attr name="dotTextSize"/>
+        <!-- 圆点相对于 View 在右上角溢出的距离 -->
         <attr name="dotOverPadding"/>
+        <!-- 圆点位置：left：左侧；right：右侧 -->
         <attr name="dotLocation"/>
     </declare-styleable>
 

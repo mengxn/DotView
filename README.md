@@ -11,7 +11,7 @@
 ### 使用
 #### 引用
 ```groovy
-compile 'me.codego.view:dot-view:1.0.2'
+compile 'me.codego.view:dot-view:1.0.3'
 ```
 #### DotView
 > 我们可以使用DotView，在任何你需要的地方。
@@ -27,11 +27,13 @@ compile 'me.codego.view:dot-view:1.0.2'
     app:dotPadding="3dp" 
     app:dotColor="#00F"/>
 ```
+dotColor：圆点背景色  
+dotPadding：圆点 padding 值。不显示数字：相当于圆半径；显示数字：外圆到数字的距离  
 
 #### DotLayout
 > 我们也可以直接使用DotLayout，DotLayout集成更简单。
 
-1. 我们可以使用DotLayout包裹任何需要提示
+1. 我们可以使用 DotLayout 包裹任何需要提示的 View，例如：
 ```xml
 <me.codego.view.DotLayout
     android:layout_width="wrap_content"
@@ -44,4 +46,15 @@ compile 'me.codego.view:dot-view:1.0.2'
         android:src="@mipmap/ic_launcher"/>
 </me.codego.view.DotLayout>
 ```
-2. 调用`dotLayout.show(true, 4)`进行展示
+dotColor：圆点背景色  
+dotTextColor：圆点前景色，即数字显示颜色  
+dotPadding：圆点 padding 值。不显示数字：相当于圆半径；显示数字：外圆到数字的距离  
+dotTextSize：字号大小  
+dotOverPadding：圆点相对于 View 在右上角溢出的距离  
+dotLocation：圆点位置：left：左侧；right：右侧  
+
+2. 调用代码进行展示
+- 仅显示提示  
+`dotLayout.show(true)`
+- 显示数字提示  
+`dotLayout.show(true, 4)`
