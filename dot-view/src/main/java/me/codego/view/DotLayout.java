@@ -135,11 +135,10 @@ public class DotLayout extends FrameLayout {
 
     private void drawRight(Canvas canvas) {
         canvas.save();
-        final View childView = getChildAt(0);
 
         // 画点
         int radius = getDotRadius();
-        canvas.translate(childView.getRight() - radius * 2 + mDotOverPadding, childView.getTop() - mDotOverPadding);
+        canvas.translate(getRight() - radius * 2, 0f);
         canvas.drawCircle(radius, radius, radius, mPaint);
 
         // 如果 mNumber > 0, 将数据画出来
