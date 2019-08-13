@@ -74,9 +74,16 @@ public class DotLayout extends FrameLayout {
                 setPadding(padding, getPaddingTop(), getPaddingRight(), getPaddingBottom());
             }
         } else {
-            if (getPaddingTop() < mDotOverPadding || getPaddingRight() < mDotOverPadding) {
-                setPadding(getPaddingLeft(), Math.max(getPaddingTop(), mDotOverPadding), Math.max(getPaddingRight(), mDotOverPadding), getPaddingBottom());
+            // 防止未设置 padding 值，不显示问题
+            int topPadding = getPaddingTop();
+            if (topPadding <= 0) {
+                topPadding = mDotOverPadding;
             }
+            int rightPadding = getPaddingRight();
+            if (rightPadding <= 0) {
+                rightPadding = mDotOverPadding;
+            }
+            setPadding(getPaddingLeft(), topPadding, rightPadding, getPaddingBottom());
         }
 
         if (isInEditMode()) {
@@ -128,17 +135,19 @@ public class DotLayout extends FrameLayout {
         canvas.save();
         final int radius = mDotPadding;
         final View childView = getChildAt(0);
-        canvas.translate(childView.getLeft() - radius * 2 - mDotOverPadding, (childView.getTop() + childView.getBottom()) / 2 - radius);
+        canvas.translate(childView.getLeft() - radius * 2 - mDotOverPadding, (childView.getTop() + childView.getBottom()) / 2f - radius);
         canvas.drawCircle(radius, radius, radius, mPaint);
         canvas.restore();
     }
 
     private void drawRight(Canvas canvas) {
         canvas.save();
+        final View childView = getChildAt(0);
 
         // 画点
         int radius = getDotRadius();
-        canvas.translate(getRight() - radius * 2, 0f);
+        // 在有效 padding 值内进行绘制
+        canvas.translate(childView.getRight() - radius * 2 + Math.min(mDotOverPadding, getPaddingRight()), childView.getTop() - Math.min(mDotOverPadding, getPaddingTop()));
         canvas.drawCircle(radius, radius, radius, mPaint);
 
         // 如果 mNumber > 0, 将数据画出来
