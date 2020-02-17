@@ -212,4 +212,13 @@ public class DotLayout extends FrameLayout {
         this.mNumber = isShow ? number : 0;
         postInvalidate();
     }
+
+    /**
+     * 是否已显示提示
+     *
+     * @return
+     */
+    public boolean isShowing() {
+        return this.isShow;
+    }
 }
