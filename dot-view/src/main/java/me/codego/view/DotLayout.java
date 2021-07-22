@@ -5,8 +5,6 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
@@ -40,11 +38,11 @@ public class DotLayout extends FrameLayout {
     private static final int LOCATION_LEFT = 1;
 
 
-    public DotLayout(@NonNull Context context) {
+    public DotLayout(Context context) {
         this(context, null);
     }
 
-    public DotLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public DotLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.DotLayout, 0, 0);
