@@ -11,8 +11,21 @@
 ### 使用
 #### 引用
 ```groovy
-compile 'me.codego.view:dot-view:1.0.3'
+# project build.gradle
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+# module build.gralde
+dependencies {
+    ...
+    implementation 'com.github.mengxn:DotView:1.0.5'
+}
 ```
+
 #### DotView
 > 我们可以使用DotView，在任何你需要的地方。
 
