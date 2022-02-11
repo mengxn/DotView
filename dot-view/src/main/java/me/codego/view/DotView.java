@@ -1,10 +1,13 @@
 package me.codego.view;
 
+import static me.codego.view.DotType.PLUS;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -19,12 +22,24 @@ import me.codego.dotview.R;
 public class DotView extends TextView {
 
     private Paint mPaint;
-    private int mDotPadding;
+    /**
+     * 圆点半径
+     */
+    private int mDotRadius;
+    /**
+     * 数值超大时（>99）显示类型
+     */
+    private DotType mDotType = PLUS;
+    private final RectF mDotRect = new RectF();
 
-    private static final String DEFAULT_OVER_TEXT = "...";
-    private static final int DEFAULT_PADDING = 3;
-    private static final String DEFAULT_TEXT = "88";
-
+    /**
+     * 默认圆点半径
+     */
+    private static final int DEFAULT_RADIUS = 3;
+    /**
+     * 最大显示数值
+     */
+    private static final int NUMBER_LIMIT = 99;
 
     public DotView(Context context) {
         super(context);
@@ -36,63 +51,78 @@ public class DotView extends TextView {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.DotView, 0, 0);
         int color = typedArray.getColor(R.styleable.DotView_dotColor, Color.RED);
         float density = getResources().getDisplayMetrics().density;
-        mDotPadding = typedArray.getDimensionPixelSize(R.styleable.DotView_dotPadding, (int) (DEFAULT_PADDING * density));
+        mDotRadius = typedArray.getDimensionPixelSize(R.styleable.DotView_dotRadius, (int) (DEFAULT_RADIUS * density));
         typedArray.recycle();
 
         mPaint = new Paint();
         mPaint.setColor(color);
         mPaint.setAntiAlias(true);
 
-        setPadding(0, 0, 0, 0);
         setGravity(Gravity.CENTER);
+
+        if (isInEditMode()) {
+            mDotRadius = ((int) (3 * density));
+        }
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        final int radius = getWidth() / 2;
-        canvas.drawCircle(radius, radius, radius, mPaint);
+        canvas.drawRoundRect(mDotRect, mDotRect.height(), mDotRect.height(), mPaint);
         super.onDraw(canvas);
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int width = 0;
         if (getText().length() > 0) {
-            width = Math.max(getTextWidth(), getTextHeight());
+            super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+            if (getMeasuredWidth() < getMeasuredHeight()) {
+                int newMeasureSpec = MeasureSpec.makeMeasureSpec(getMeasuredHeight(), MeasureSpec.EXACTLY);
+                super.onMeasure(newMeasureSpec, heightMeasureSpec);
+            }
+        } else {
+            int newMeasureSpec = MeasureSpec.makeMeasureSpec(mDotRadius * 2, MeasureSpec.EXACTLY);
+            super.onMeasure(newMeasureSpec, newMeasureSpec);
         }
-        width += mDotPadding * 2;
-        int newMeasureSpec = MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY);
-        super.onMeasure(newMeasureSpec, newMeasureSpec);
+        mDotRect.right = getMeasuredWidth();
+        mDotRect.bottom = getMeasuredHeight();
     }
 
-    private int getTextWidth() {
-        return (int) getPaint().measureText(DEFAULT_TEXT);
-    }
-
-    private int getTextHeight() {
-        final Paint.FontMetrics fontMetrics = getPaint().getFontMetrics();
-        return (int) (fontMetrics.descent - fontMetrics.ascent);
+    public void setDotType(DotType type) {
+        mDotType = type;
     }
 
     @Override
     public void setText(CharSequence text, BufferType type) {
-        if (text.length() > 0) {
-            final String testStr = text.toString();
-            if (!isNumber(testStr) || !isLegalNumber(Integer.valueOf(testStr))) {
-                text = DEFAULT_OVER_TEXT;
+        super.setText(getNumberText(text), type);
+    }
+
+    private String getNumberText(CharSequence text) {
+        final String textStr = text.toString();
+        if (TextUtils.isEmpty(text) || !textStr.matches("\\d+")) {
+            return "";
+        }
+        if (isLegalNumber(textStr)) {
+            return textStr;
+        }
+        switch (mDotType != null ? mDotType : PLUS) {
+            case ELLIPSIS:
+                return "...";
+            case PLUS:
+            default:
+                return "99+";
+        }
+    }
+
+    private boolean isLegalNumber(String text) {
+        try {
+            int number = Integer.parseInt(text);
+            if (number >= 0 && number <= NUMBER_LIMIT) {
+                return true;
             }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
         }
-        super.setText(text, type);
+        return false;
     }
 
-    private boolean isNumber(String text) {
-        if (TextUtils.isEmpty(text)) {
-            return false;
-        }
-        return text.matches("\\d+");
-    }
-
-    private boolean isLegalNumber(int number) {
-        return number >= 0 && number < 100;
-    }
 }

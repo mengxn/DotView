@@ -1,36 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <attr name="dotColor" format="color"/>
-    <attr name="dotTextColor" format="color"/>
-    <attr name="dotPadding" format="dimension"/>
-    <attr name="dotOverPadding" format="dimension"/>
-    <attr name="dotTextSize" format="dimension"/>
+    <attr name="dotColor" format="color" />
+    <attr name="dotRadius" format="dimension" />
+    <attr name="dotTextColor" format="color" />
+    <attr name="dotPaddingStartEnd" format="dimension" />
+    <attr name="dotPaddingTopBottom" format="dimension" />
+    <attr name="dotTextSize" format="dimension" />
     <attr name="dotLocation" format="enum">
-        <enum name="right" value="0"/>
-        <enum name="left" value="1"/>
+        <enum name="right" value="0" />
+        <enum name="left" value="1" />
     </attr>
 
     <declare-styleable name="DotView">
+        <!-- 原点半径大小（不显示数字时） -->
+        <attr name="dotRadius" />
         <!-- 圆点背景色 -->
-        <attr name="dotColor"/>
-        <!-- 不显示数字：相当于圆半径；显示数字：外圆到数字的距离 -->
-        <attr name="dotPadding"/>
+        <attr name="dotColor" />
     </declare-styleable>
 
     <declare-styleable name="DotLayout">
+        <!-- 原点半径大小（不显示数字时） -->
+        <attr name="dotRadius" />
         <!-- 圆点背景色 -->
-        <attr name="dotColor"/>
+        <attr name="dotColor" />
         <!-- 圆点前景色，即数字显示颜色 -->
-        <attr name="dotTextColor"/>
-        <!-- 不显示数字：相当于圆半径；显示数字：外圆到数字的距离 -->
-        <attr name="dotPadding"/>
+        <attr name="dotTextColor" />
         <!-- 字号大小 -->
-        <attr name="dotTextSize"/>
-        <!-- 圆点相对于 View 在右上角溢出的距离 -->
-        <attr name="dotOverPadding"/>
+        <attr name="dotTextSize" />
+        <!-- 不显示数字：相当于圆半径；显示数字：外圆到数字的距离 -->
+        <attr name="dotPaddingStartEnd" />
+        <attr name="dotPaddingTopBottom" />
         <!-- 圆点位置：left：左侧；right：右侧 -->
-        <attr name="dotLocation"/>
+        <attr name="dotLocation" />
     </declare-styleable>
 
 </resources>
