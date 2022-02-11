@@ -6,7 +6,7 @@
 ### 效果展示
 > 在大部分情况下红点提示会显示在图标右上角，也有部分是在文字的前面。
 
-![demo](image/demo_2.png)
+![demo](image/demo.png)
 
 ### 使用
 #### 引用
@@ -22,7 +22,7 @@ allprojects {
 # module build.gralde
 dependencies {
     ...
-    implementation 'com.github.mengxn:DotView:1.0.5'
+    implementation 'com.github.mengxn:dotview:2.0.0' // 不向下兼容1.X.X
 }
 ```
 
@@ -37,11 +37,11 @@ dependencies {
     android:text="37"
     android:textColor="#FFF"
     android:textSize="12sp"
-    app:dotPadding="3dp" 
+    app:dotRadius="3dp" 
     app:dotColor="#00F"/>
 ```
 dotColor：圆点背景色  
-dotPadding：圆点 padding 值。不显示数字：相当于圆半径；显示数字：外圆到数字的距离  
+dotRadius：圆点半径值  
 
 #### DotLayout
 > 我们也可以直接使用DotLayout，DotLayout集成更简单。
@@ -51,7 +51,12 @@ dotPadding：圆点 padding 值。不显示数字：相当于圆半径；显示�
 <me.codego.view.DotLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:dotOverPadding="3dp">
+    app:dotPaddingStartEnd="5dp"
+    app:dotPaddingTopBottom="3dp"
+    app:dotRadius="3dp"
+    app:dotColor="#f00"
+    app:dotTextColor="#FFF"
+    app:dotTextSize="10sp" >
 
     <ImageView
         android:layout_width="wrap_content"
@@ -61,9 +66,10 @@ dotPadding：圆点 padding 值。不显示数字：相当于圆半径；显示�
 ```
 dotColor：圆点背景色  
 dotTextColor：圆点前景色，即数字显示颜色  
-dotPadding：圆点 padding 值。不显示数字：相当于圆半径；显示数字：外圆到数字的距离  
 dotTextSize：字号大小  
-dotOverPadding：圆点相对于 View 在右上角溢出的距离  
+dotRadius：圆点半径值  
+dotPaddingStartEnd：圆点前后padding  
+dotPaddingTopBottom：圆点上下padding  
 dotLocation：圆点位置：left：左侧；right：右侧  
 
 2. 调用代码进行展示
