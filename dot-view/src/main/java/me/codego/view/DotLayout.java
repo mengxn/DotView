@@ -157,7 +157,7 @@ public class DotLayout extends FrameLayout {
 
         // 画点
         RectF rect = getDotRect();
-        canvas.translate(childView.getMeasuredWidth() - rect.width(), 0);
+        canvas.translate(childView.getRight() - rect.width(), childView.getTop());
         canvas.drawRoundRect(rect, rect.height(), rect.height(), mPaint);
 
         // 如果 mNumber > 0, 将数据画出来

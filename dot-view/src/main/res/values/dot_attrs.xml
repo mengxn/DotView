@@ -28,8 +28,9 @@
         <attr name="dotTextColor" />
         <!-- 字号大小 -->
         <attr name="dotTextSize" />
-        <!-- 不显示数字：相当于圆半径；显示数字：外圆到数字的距离 -->
+        <!-- 数字前后padding值 -->
         <attr name="dotPaddingStartEnd" />
+        <!-- 数字上下padding值 -->
         <attr name="dotPaddingTopBottom" />
         <!-- 圆点位置：left：左侧；right：右侧 -->
         <attr name="dotLocation" />

@@ -134,8 +134,8 @@
 
         <me.codego.view.DotLayout
             android:id="@+id/dot_layout_5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             app:dotPaddingStartEnd="5dp"
@@ -145,6 +145,7 @@
             <TextView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:layout_gravity="center"
                 android:background="#ff0" />
         </me.codego.view.DotLayout>
 
