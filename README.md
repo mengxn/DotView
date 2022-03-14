@@ -51,8 +51,8 @@ dotRadius：圆点半径值
 <me.codego.view.DotLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:dotPaddingStartEnd="5dp"
-    app:dotPaddingTopBottom="3dp"
+    app:dotPaddingHorizontal="5dp"
+    app:dotPaddingVertical="3dp"
     app:dotRadius="3dp"
     app:dotColor="#f00"
     app:dotTextColor="#FFF"
@@ -68,8 +68,8 @@ dotColor：圆点背景色
 dotTextColor：圆点前景色，即数字显示颜色  
 dotTextSize：字号大小  
 dotRadius：圆点半径值  
-dotPaddingStartEnd：圆点前后padding  
-dotPaddingTopBottom：圆点上下padding  
+dotPaddingHorizontal：圆点前后padding  
+dotPaddingVertical：圆点上下padding  
 dotLocation：圆点位置：left：左侧；right：右侧  
 
 2. 调用代码进行展示

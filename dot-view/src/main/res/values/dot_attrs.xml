@@ -4,8 +4,8 @@
     <attr name="dotColor" format="color" />
     <attr name="dotRadius" format="dimension" />
     <attr name="dotTextColor" format="color" />
-    <attr name="dotPaddingStartEnd" format="dimension" />
-    <attr name="dotPaddingTopBottom" format="dimension" />
+    <attr name="dotPaddingHorizontal" format="dimension" />
+    <attr name="dotPaddingVertical" format="dimension" />
     <attr name="dotTextSize" format="dimension" />
     <attr name="dotLocation" format="enum">
         <enum name="right" value="0" />
@@ -29,9 +29,9 @@
         <!-- 字号大小 -->
         <attr name="dotTextSize" />
         <!-- 数字前后padding值 -->
-        <attr name="dotPaddingStartEnd" />
+        <attr name="dotPaddingHorizontal" />
         <!-- 数字上下padding值 -->
-        <attr name="dotPaddingTopBottom" />
+        <attr name="dotPaddingVertical" />
         <!-- 圆点位置：left：左侧；right：右侧 -->
         <attr name="dotLocation" />
     </declare-styleable>

@@ -24,8 +24,8 @@ public class DotLayout extends FrameLayout {
 
     private Paint mPaint;
     private Paint mTextPaint;
-    private int mDotPaddingStartEnd;
-    private int mDotPaddingTopBottom;
+    private int mDotPaddingHorizontal;
+    private int mDotPaddingVertical;
     private int mDotLocation;
     private float mTextSize;
     private int mDotRadius;
@@ -51,8 +51,8 @@ public class DotLayout extends FrameLayout {
         int color = typedArray.getColor(R.styleable.DotLayout_dotColor, Color.RED);
         int textColor = typedArray.getColor(R.styleable.DotLayout_dotTextColor, Color.WHITE);
         float density = getResources().getDisplayMetrics().density;
-        mDotPaddingStartEnd = typedArray.getDimensionPixelOffset(R.styleable.DotLayout_dotPaddingStartEnd, (int) (DEFAULT_PADDING * density));
-        mDotPaddingTopBottom = typedArray.getDimensionPixelOffset(R.styleable.DotLayout_dotPaddingTopBottom, (int) (DEFAULT_PADDING * density));
+        mDotPaddingHorizontal = typedArray.getDimensionPixelOffset(R.styleable.DotLayout_dotPaddingHorizontal, (int) (DEFAULT_PADDING * density));
+        mDotPaddingVertical = typedArray.getDimensionPixelOffset(R.styleable.DotLayout_dotPaddingVertical, (int) (DEFAULT_PADDING * density));
         mTextSize = typedArray.getDimensionPixelOffset(R.styleable.DotLayout_dotTextSize, (int) (DEFAULT_TEXT_SIZE * density));
         mDotRadius = typedArray.getDimensionPixelOffset(R.styleable.DotLayout_dotRadius, (int) (DEFAULT_OVER_PADDING * density));
         mDotLocation = typedArray.getInt(R.styleable.DotLayout_dotLocation, LOCATION_RIGHT);
@@ -70,7 +70,7 @@ public class DotLayout extends FrameLayout {
 
         // 修改padding值以便显示红点
         if (mDotLocation == LOCATION_LEFT) {
-            final int padding = mDotRadius * 2 + mDotPaddingStartEnd;
+            final int padding = mDotRadius * 2 + mDotPaddingHorizontal;
             if (getPaddingLeft() < padding) {
                 setPadding(padding, getPaddingTop(), getPaddingRight(), getPaddingBottom());
             }
@@ -117,9 +117,9 @@ public class DotLayout extends FrameLayout {
     /**
      * 设置圆点padding
      */
-    public void setDotPadding(int startEnd, int topBottom) {
-        mDotPaddingStartEnd = startEnd;
-        mDotPaddingTopBottom = topBottom;
+    public void setDotPadding(int horizontal, int vertical) {
+        mDotPaddingHorizontal = horizontal;
+        mDotPaddingVertical = vertical;
         postInvalidate();
     }
 
@@ -146,7 +146,7 @@ public class DotLayout extends FrameLayout {
         canvas.save();
         final int radius = mDotRadius;
         final View childView = getChildAt(0);
-        canvas.translate(childView.getLeft() - radius * 2 - mDotPaddingStartEnd, (childView.getTop() + childView.getBottom()) / 2f - radius);
+        canvas.translate(childView.getLeft() - radius * 2 - mDotPaddingHorizontal, (childView.getTop() + childView.getBottom()) / 2f - radius);
         canvas.drawCircle(radius, radius, radius, mPaint);
         canvas.restore();
     }
@@ -176,9 +176,9 @@ public class DotLayout extends FrameLayout {
 
     private RectF getDotRect() {
         if (isShowNumber()) {
-            float textWidth = mTextPaint.measureText(getNumberText()) + mDotPaddingStartEnd * 2;
+            float textWidth = mTextPaint.measureText(getNumberText()) + mDotPaddingHorizontal * 2;
             final Paint.FontMetrics fontMetrics = mTextPaint.getFontMetrics();
-            final float textHeight = fontMetrics.descent - fontMetrics.ascent + mDotPaddingTopBottom * 2;
+            final float textHeight = fontMetrics.descent - fontMetrics.ascent + mDotPaddingVertical * 2;
             if (textWidth < textHeight) {
                 textWidth = textHeight;
             }
