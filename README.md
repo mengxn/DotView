@@ -22,7 +22,7 @@ allprojects {
 # module build.gralde
 dependencies {
     ...
-    implementation 'com.github.mengxn:dotview:2.0.0' // 不向下兼容1.X.X
+    implementation 'com.github.mengxn:dotview:2.0.4' // 不向下兼容1.X.X
 }
 ```
 
@@ -51,12 +51,15 @@ dotRadius：圆点半径值
 <me.codego.view.DotLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    app:dotMarginEnd="-5dp"
+    app:dotMarginTop="-5dp"
     app:dotPaddingHorizontal="5dp"
     app:dotPaddingVertical="3dp"
     app:dotRadius="3dp"
     app:dotColor="#f00"
     app:dotTextColor="#FFF"
-    app:dotTextSize="10sp" >
+    app:dotTextSize="10sp"
+    app:dotType="plus" >
 
     <ImageView
         android:layout_width="wrap_content"
@@ -69,8 +72,11 @@ dotTextColor：圆点前景色，即数字显示颜色
 dotTextSize：字号大小  
 dotRadius：圆点半径值  
 dotPaddingHorizontal：圆点前后padding  
-dotPaddingVertical：圆点上下padding  
-dotLocation：圆点位置：left：左侧；right：右侧  
+dotPaddingVertical：圆点上下padding
+dotMarginTop: 圆点上margin值
+dotMarginEnd: 圆点右margin值
+dotLocation：圆点位置：left：左侧；right：右侧
+dotType: 圆点数字超限显示方式: normal:不限制；ellipsis：省略号形式；plus：99+形式
 
 2. 调用代码进行展示
 - 仅显示提示  
