@@ -26,6 +26,8 @@ public class DotLayout extends FrameLayout {
     private Paint mTextPaint;
     private int mDotPaddingHorizontal;
     private int mDotPaddingVertical;
+    private int mDotMarginTop;
+    private int mDotMarginEnd;
     private int mDotLocation;
     private float mTextSize;
     private int mDotRadius;
@@ -53,6 +55,8 @@ public class DotLayout extends FrameLayout {
         float density = getResources().getDisplayMetrics().density;
         mDotPaddingHorizontal = typedArray.getDimensionPixelOffset(R.styleable.DotLayout_dotPaddingHorizontal, (int) (DEFAULT_PADDING * density));
         mDotPaddingVertical = typedArray.getDimensionPixelOffset(R.styleable.DotLayout_dotPaddingVertical, (int) (DEFAULT_PADDING * density));
+        mDotMarginTop = typedArray.getDimensionPixelOffset(R.styleable.DotLayout_dotMarginTop, 0);
+        mDotMarginEnd = typedArray.getDimensionPixelOffset(R.styleable.DotLayout_dotMarginEnd, 0);
         mTextSize = typedArray.getDimensionPixelOffset(R.styleable.DotLayout_dotTextSize, (int) (DEFAULT_TEXT_SIZE * density));
         mDotRadius = typedArray.getDimensionPixelOffset(R.styleable.DotLayout_dotRadius, (int) (DEFAULT_OVER_PADDING * density));
         mDotLocation = typedArray.getInt(R.styleable.DotLayout_dotLocation, LOCATION_RIGHT);
@@ -157,11 +161,11 @@ public class DotLayout extends FrameLayout {
 
         // 画点
         RectF rect = getDotRect();
-        canvas.translate(childView.getRight() - rect.width(), childView.getTop());
+        canvas.translate(childView.getRight() - rect.width() - mDotMarginEnd, childView.getTop() + mDotMarginTop);
         canvas.drawRoundRect(rect, rect.height(), rect.height(), mPaint);
 
         // 如果 mNumber > 0, 将数据画出来
-        if (mNumber > 0) {
+        if (isShowNumber()) {
             String text = getNumberText();
             final float textWidth = mTextPaint.measureText(text);
             final Paint.FontMetrics fontMetrics = mTextPaint.getFontMetrics();

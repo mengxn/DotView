@@ -6,6 +6,8 @@
     <attr name="dotTextColor" format="color" />
     <attr name="dotPaddingHorizontal" format="dimension" />
     <attr name="dotPaddingVertical" format="dimension" />
+    <attr name="dotMarginTop" format="dimension" />
+    <attr name="dotMarginEnd" format="dimension" />
     <attr name="dotTextSize" format="dimension" />
     <attr name="dotLocation" format="enum">
         <enum name="right" value="0" />
@@ -32,6 +34,8 @@
         <attr name="dotPaddingHorizontal" />
         <!-- 数字上下padding值 -->
         <attr name="dotPaddingVertical" />
+        <attr name="dotMarginTop" />
+        <attr name="dotMarginEnd" />
         <!-- 圆点位置：left：左侧；right：右侧 -->
         <attr name="dotLocation" />
     </declare-styleable>

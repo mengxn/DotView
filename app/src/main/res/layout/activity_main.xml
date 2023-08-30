@@ -138,6 +138,8 @@
             android:layout_height="60dp"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
+            app:dotMarginEnd="-5dp"
+            app:dotMarginTop="-5dp"
             app:dotPaddingHorizontal="5dp"
             app:dotPaddingVertical="3dp"
             app:dotRadius="3dp">
