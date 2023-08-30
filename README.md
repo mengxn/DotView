@@ -72,11 +72,11 @@ dotTextColor：圆点前景色，即数字显示颜色
 dotTextSize：字号大小  
 dotRadius：圆点半径值  
 dotPaddingHorizontal：圆点前后padding  
-dotPaddingVertical：圆点上下padding
-dotMarginTop: 圆点上margin值
-dotMarginEnd: 圆点右margin值
-dotLocation：圆点位置：left：左侧；right：右侧
-dotType: 圆点数字超限显示方式: normal:不限制；ellipsis：省略号形式；plus：99+形式
+dotPaddingVertical：圆点上下padding  
+dotMarginTop: 圆点上margin值  
+dotMarginEnd: 圆点右margin值  
+dotLocation：圆点位置：left：左侧；right：右侧  
+dotType: 圆点数字超限显示方式: normal:不限制；ellipsis：省略号形式；plus：99+形式  
 
 2. 调用代码进行展示
 - 仅显示提示  
