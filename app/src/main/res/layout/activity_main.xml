@@ -48,7 +48,8 @@
             android:text="100"
             android:textColor="#FFF"
             android:textSize="10sp"
-            app:dotRadius="10dp" />
+            app:dotRadius="10dp"
+            app:dotType="plus" />
 
         <me.codego.view.DotView
             android:layout_width="wrap_content"
@@ -142,7 +143,8 @@
             app:dotMarginTop="-5dp"
             app:dotPaddingHorizontal="5dp"
             app:dotPaddingVertical="3dp"
-            app:dotRadius="3dp">
+            app:dotRadius="3dp"
+            app:dotType="plus">
 
             <TextView
                 android:layout_width="40dp"

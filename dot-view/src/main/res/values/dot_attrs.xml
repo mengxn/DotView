@@ -13,12 +13,19 @@
         <enum name="right" value="0" />
         <enum name="left" value="1" />
     </attr>
+    <attr name="dotType" format="enum">
+        <enum name="normal" value="0" />
+        <enum name="ellipsis" value="1" />
+        <enum name="plus" value="2" />
+    </attr>
 
     <declare-styleable name="DotView">
         <!-- 原点半径大小（不显示数字时） -->
         <attr name="dotRadius" />
         <!-- 圆点背景色 -->
         <attr name="dotColor" />
+        <!-- 圆点数字超限显示方式 -->
+        <attr name="dotType" />
     </declare-styleable>
 
     <declare-styleable name="DotLayout">
@@ -34,10 +41,14 @@
         <attr name="dotPaddingHorizontal" />
         <!-- 数字上下padding值 -->
         <attr name="dotPaddingVertical" />
+        <!-- 圆点上margin值 -->
         <attr name="dotMarginTop" />
+        <!-- 圆点右margin值 -->
         <attr name="dotMarginEnd" />
         <!-- 圆点位置：left：左侧；right：右侧 -->
         <attr name="dotLocation" />
+        <!-- 圆点数字超限显示方式 -->
+        <attr name="dotType" />
     </declare-styleable>
 
 </resources>

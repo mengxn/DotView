@@ -31,7 +31,7 @@ public class DotLayout extends FrameLayout {
     private int mDotLocation;
     private float mTextSize;
     private int mDotRadius;
-    private DotType mDotType = PLUS;
+    private DotType mDotType;
     private int mNumber;
     private boolean isShow;
 
@@ -41,6 +41,8 @@ public class DotLayout extends FrameLayout {
 
     private static final int LOCATION_RIGHT = 0;
     private static final int LOCATION_LEFT = 1;
+
+    private static final int NUMBER_LIMIT = 99;
 
     public DotLayout(Context context) {
         this(context, null);
@@ -60,6 +62,8 @@ public class DotLayout extends FrameLayout {
         mTextSize = typedArray.getDimensionPixelOffset(R.styleable.DotLayout_dotTextSize, (int) (DEFAULT_TEXT_SIZE * density));
         mDotRadius = typedArray.getDimensionPixelOffset(R.styleable.DotLayout_dotRadius, (int) (DEFAULT_OVER_PADDING * density));
         mDotLocation = typedArray.getInt(R.styleable.DotLayout_dotLocation, LOCATION_RIGHT);
+        int typeCode = typedArray.getInt(R.styleable.DotLayout_dotType, PLUS.getCode());
+        mDotType = DotType.valueOf(typeCode);
         typedArray.recycle();
 
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -194,7 +198,10 @@ public class DotLayout extends FrameLayout {
 
 
     public void setDotType(DotType type) {
-        mDotType = type;
+        if (mDotType != type) {
+            mDotType = type;
+            postInvalidate();
+        }
     }
 
     /**
@@ -213,15 +220,17 @@ public class DotLayout extends FrameLayout {
     }
 
     private String getNumberText() {
-        if (mNumber <= 99) {
+        if (mNumber <= NUMBER_LIMIT) {
             return String.valueOf(mNumber);
         } else {
-            switch (mDotType != null ? mDotType : PLUS) {
+            switch (mDotType) {
                 case ELLIPSIS:
                     return "...";
                 case PLUS:
-                default:
                     return "99+";
+                case NORMAL:
+                default:
+                    return String.valueOf(mNumber);
             }
         }
     }

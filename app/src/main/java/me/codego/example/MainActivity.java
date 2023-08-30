@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         final DotLayout dotLayout5 = (DotLayout) findViewById(R.id.dot_layout_5);
         dotLayout5.setNumber(100);
-        dotLayout5.setDotType(DotType.PLUS);
+        dotLayout5.setDotType(DotType.NORMAL);
         dotLayout5.show(true);
 
     }

@@ -30,6 +30,7 @@ public class DotView extends TextView {
      * 数值超大时（>99）显示类型
      */
     private DotType mDotType = PLUS;
+    private CharSequence mOriginText;
     private final RectF mDotRect = new RectF();
 
     /**
@@ -40,6 +41,10 @@ public class DotView extends TextView {
      * 最大显示数值
      */
     private static final int NUMBER_LIMIT = 99;
+    /**
+     * 纯数字
+     */
+    private static final String PATTERN_NUMBER = "\\d+";
 
     public DotView(Context context) {
         super(context);
@@ -52,6 +57,8 @@ public class DotView extends TextView {
         int color = typedArray.getColor(R.styleable.DotView_dotColor, Color.RED);
         float density = getResources().getDisplayMetrics().density;
         mDotRadius = typedArray.getDimensionPixelSize(R.styleable.DotView_dotRadius, (int) (DEFAULT_RADIUS * density));
+        int typeCode = typedArray.getInt(R.styleable.DotView_dotType, PLUS.getCode());
+        setDotType(DotType.valueOf(typeCode));
         typedArray.recycle();
 
         mPaint = new Paint();
@@ -88,41 +95,36 @@ public class DotView extends TextView {
     }
 
     public void setDotType(DotType type) {
-        mDotType = type;
+        if (mDotType != type) {
+            mDotType = type;
+            setText(mOriginText);
+        }
     }
 
     @Override
     public void setText(CharSequence text, BufferType type) {
+        mOriginText = text;
         super.setText(getNumberText(text), type);
     }
 
     private String getNumberText(CharSequence text) {
         final String textStr = text.toString();
-        if (TextUtils.isEmpty(text) || !textStr.matches("\\d+")) {
+        if (TextUtils.isEmpty(text) || !textStr.matches(PATTERN_NUMBER)) {
             return "";
         }
-        if (isLegalNumber(textStr)) {
+        if (Integer.parseInt(textStr) <= NUMBER_LIMIT) {
             return textStr;
-        }
-        switch (mDotType != null ? mDotType : PLUS) {
-            case ELLIPSIS:
-                return "...";
-            case PLUS:
-            default:
-                return "99+";
-        }
-    }
-
-    private boolean isLegalNumber(String text) {
-        try {
-            int number = Integer.parseInt(text);
-            if (number >= 0 && number <= NUMBER_LIMIT) {
-                return true;
+        } else {
+            switch (mDotType != null ? mDotType : PLUS) {
+                case ELLIPSIS:
+                    return "...";
+                case PLUS:
+                    return "99+";
+                case NORMAL:
+                default:
+                    return textStr;
             }
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
         }
-        return false;
     }
 
 }
